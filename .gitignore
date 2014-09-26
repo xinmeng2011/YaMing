@@ -1,0 +1,12 @@
+target
+.DS_Store
+
+.project
+.classpath
+.settings
+*.class
+*.apk
+android/bin/
+android/gen/
+.settings/
+proguard/
