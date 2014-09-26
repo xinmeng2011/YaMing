@@ -5,8 +5,9 @@ target
 .classpath
 .settings
 *.class
-*.apk
 android/bin/
 android/gen/
+android_test/bin/
+android_test/gen/
 .settings/
 proguard/
