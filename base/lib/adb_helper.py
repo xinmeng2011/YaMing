@@ -36,3 +36,10 @@ def devices():
             dev_list.append(i)
     print dev_list
     return dev_list
+
+
+def start_instrumentation(package):
+    pass
+
+def wait_for_launch(timeout):
+    pass
