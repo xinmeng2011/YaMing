@@ -5,6 +5,7 @@ target
 .classpath
 .settings
 *.class
+*.pyc
 android/bin/
 android/gen/
 android_test/bin/
