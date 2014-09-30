@@ -8,6 +8,7 @@ import android.os.Bundle;
 public class PrivateTestRunner extends Instrumentation {
 
 	String tag = "PrivateTestRunner_cindy";
+	Frame mTestFrame;
 	@Override
 	public void onCreate(Bundle arguments) {
 		super.onCreate(arguments);
@@ -18,6 +19,8 @@ public class PrivateTestRunner extends Instrumentation {
 	public void onStart() {
 		super.onStart();
 		android.util.Log.i(tag, "runner onStart");
+		mTestFrame.run();
+		android.util.Log.i(tag, "test frame run ok");
 	}
 	
 	
