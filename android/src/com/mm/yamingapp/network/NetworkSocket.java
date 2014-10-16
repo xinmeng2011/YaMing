@@ -21,10 +21,12 @@ public class NetworkSocket{
 	
 	public void connect2Server(String ip , int port){
 		try {
+			Log.i(tag, "connect to server");
 			mMainSocket = new Socket(ip, port);
 		} catch (UnknownHostException e) {
 			Log.i(tag, "can not connect to server");
 		} catch (IOException e) {
+			Log.i(tag, "can not connect to server");
 		}
 	}
 	

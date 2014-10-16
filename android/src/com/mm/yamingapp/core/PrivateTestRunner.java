@@ -4,13 +4,18 @@ package com.mm.yamingapp.core;
 
 import android.app.Instrumentation;
 import android.os.Bundle;
+import android.test.InstrumentationTestRunner;
+import android.widget.FrameLayout;
 
+//adb shell am instrument  com.mm.yamingapp/com.mm.yamingapp.core.PrivateTestRunner 
+// intent
 public class PrivateTestRunner extends Instrumentation {
 
 	String tag = "PrivateTestRunner_cindy";
-	Frame mTestFrame;
+	Frame mTestFrame = Frame.getInstance();
 	@Override
 	public void onCreate(Bundle arguments) {
+		android.util.Log.i(tag, "runner onCreate");
 		super.onCreate(arguments);
 		start();
 	}
