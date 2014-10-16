@@ -5,16 +5,16 @@ import socket
 
 
    
-address = ('127.0.0.1', 6688)  
-s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)  
-s.connect(address)  
-while True:
-   data = s.recv(512)  
-   print 'the data received is',data  
-   
-#s.send('hihi')  
-   
-s.close() 
+# address = ('127.0.0.1', 6688)  
+# s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)  
+# s.connect(address)  
+# while True:
+#    data = s.recv(512)  
+#    print 'the data received is',data  
+#    
+# #s.send('hihi')  
+#    
+# s.close() 
 
 STOP_SERVER_SIGNAL = 'shutDownServer'
 class RpcClientBase(object):
