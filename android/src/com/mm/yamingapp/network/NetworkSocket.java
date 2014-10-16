@@ -1,8 +1,10 @@
 package com.mm.yamingapp.network;
 
 import java.io.DataInputStream;
+import java.io.DataOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.OutputStream;
 import java.net.Socket;
 import java.net.UnknownHostException;
 
@@ -26,7 +28,7 @@ public class NetworkSocket{
 		} catch (UnknownHostException e) {
 			Log.i(tag, "can not connect to server");
 		} catch (IOException e) {
-			Log.i(tag, "can not connect to server");
+			Log.i(tag, "can not connect to server"+ e.getMessage());
 		}
 	}
 	
@@ -36,7 +38,9 @@ public class NetworkSocket{
 		}
 		try{
 			InputStream inputStream = mMainSocket.getInputStream();
+			OutputStream outputStream = mMainSocket.getOutputStream();
 			DataInputStream inputData = new DataInputStream(inputStream);
+			DataOutputStream outputData = new DataOutputStream(outputStream);
 			byte[] b = new byte[buffer_size];
 			
 			while (true){
@@ -46,6 +50,8 @@ public class NetworkSocket{
 				if(mINetworkHandler != null){
 					mINetworkHandler.doWith(Msg);
 				}
+				outputData.writeUTF("ok");
+				
 			}
 		}catch(Exception ex){
 			Log.i(tag, "exception rcving");
