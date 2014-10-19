@@ -1,2 +1,4 @@
 
 USE_EMULATOR = True
+
+SERVER_PORT = 6688
