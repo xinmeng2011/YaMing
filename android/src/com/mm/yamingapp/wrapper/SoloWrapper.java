@@ -1,18 +1,22 @@
 package com.mm.yamingapp.wrapper;
 
 import com.mm.yamingapp.core.IContext;
+import com.mm.yamingapp.core.WrapperBase;
+
 import android.app.Instrumentation;
+import android.util.Log;
+
 import com.jayway.android.robotium.solo.Solo;
 
 
-public class SoloWrapper {
+public class SoloWrapper extends WrapperBase{
 
-	private IContext mIContext;
 	private Solo mSolo;
+	private final String  tag = "SoloWrapper_cindy";
 	public SoloWrapper(IContext ic){
-		mIContext = ic;
+		super(ic);
 		try {
-			mSolo = new Solo(mIContext.getInstrumentation());
+			mSolo = new Solo(getIContext().getInstrumentation());
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -20,7 +24,8 @@ public class SoloWrapper {
 	}
 	
 	public void clickOnButtonByIndex(int index){
-		mSolo.clickOnButton(index);
+		Log.i(tag, "clickOnButtonByIndex");
+		//mSolo.clickOnButton(index);
 	}
 	
 }
