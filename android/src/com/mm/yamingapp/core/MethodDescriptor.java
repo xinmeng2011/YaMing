@@ -26,7 +26,6 @@ import com.googlecode.android_scripting.rpc.RpcDeprecated;
 import com.googlecode.android_scripting.rpc.RpcError;
 import com.googlecode.android_scripting.rpc.RpcOptional;
 import com.googlecode.android_scripting.rpc.RpcParameter;
-import com.googlecode.android_scripting.rpc.RpcStartEvent;
 import com.googlecode.android_scripting.util.VisibleForTesting;
 
 import java.lang.annotation.Annotation;
@@ -203,10 +202,6 @@ public final class MethodDescriptor {
       helpBuilder.append(rpcAnnotation.returns());
     }
 
-    if (mMethod.isAnnotationPresent(RpcStartEvent.class)) {
-      String eventName = mMethod.getAnnotation(RpcStartEvent.class).value();
-      helpBuilder.append(String.format("\n\nGenerates \"%s\" events.", eventName));
-    }
 
     if (mMethod.isAnnotationPresent(RpcDeprecated.class)) {
       String replacedBy = mMethod.getAnnotation(RpcDeprecated.class).value();

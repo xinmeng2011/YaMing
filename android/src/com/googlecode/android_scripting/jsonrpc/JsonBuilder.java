@@ -26,8 +26,6 @@ import android.telephony.CellLocation;
 import android.telephony.NeighboringCellInfo;
 import android.telephony.gsm.GsmCellLocation;
 
-import com.googlecode.android_scripting.event.Event;
-
 import java.net.InetSocketAddress;
 import java.util.ArrayList;
 import java.util.List;
@@ -92,9 +90,6 @@ public class JsonBuilder {
     }
     if (data instanceof Intent) {
       return buildJsonIntent((Intent) data);
-    }
-    if (data instanceof Event) {
-      return buildJsonEvent((Event) data);
     }
     if (data instanceof Map<?, ?>) {
       // TODO(damonkohler): I would like to make this a checked cast if possible.
@@ -175,13 +170,6 @@ public class JsonBuilder {
     return result;
   }
 
-  private static JSONObject buildJsonEvent(Event event) throws JSONException {
-    JSONObject result = new JSONObject();
-    result.put("name", event.getName());
-    result.put("data", build(event.getData()));
-    result.put("time", event.getCreationTime());
-    return result;
-  }
 
   private static JSONObject buildJsonMap(Map<String, ?> map) throws JSONException {
     JSONObject result = new JSONObject();

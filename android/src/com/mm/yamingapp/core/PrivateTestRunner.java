@@ -24,6 +24,7 @@ public class PrivateTestRunner extends Instrumentation {
 	public void onStart() {
 		super.onStart();
 		android.util.Log.i(tag, "runner onStart");
+		mTestFrame.setInstrumentation(this);
 		mTestFrame.run();
 		android.util.Log.i(tag, "test frame run ok");
 	}

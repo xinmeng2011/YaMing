@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.json.JSONArray;
 
+import com.mm.yamingapp.config.Config;
 import com.mm.yamingapp.network.INetworkHandler;;
 
 public class RpcCore  implements INetworkHandler{
@@ -16,8 +17,13 @@ public class RpcCore  implements INetworkHandler{
 	
 	public void test(){
 		try {
+			JSONArray j2 = new JSONArray();
+			j2.put(Config.TESTED_APP_PACKAGE);
+			j2.put(Config.TESTED_APP_CLASS);
+			MethodsPool.getInstance().invoke("openMainActivity", j2);
+			
 			JSONArray jArray = new JSONArray();
-			jArray.put(1);
+			jArray.put(0);
 			MethodsPool.getInstance().invoke("clickOnButtonByIndex", jArray);
 		} catch (Throwable e) {
 			e.printStackTrace();
