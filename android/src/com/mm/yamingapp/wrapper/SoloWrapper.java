@@ -6,6 +6,7 @@ import com.mm.yamingapp.core.WrapperBase;
 import android.app.Instrumentation;
 import android.util.Log;
 
+import com.googlecode.android_scripting.rpc.Rpc;
 import com.jayway.android.robotium.solo.Solo;
 
 
@@ -23,7 +24,8 @@ public class SoloWrapper extends WrapperBase{
 		}
 	}
 	
-	public void clickOnButtonByIndex(int index){
+	@Rpc(description = "")
+	public void clickOnButtonByIndex(Integer index){
 		Log.i(tag, "clickOnButtonByIndex");
 		//mSolo.clickOnButton(index);
 	}

@@ -43,7 +43,7 @@ public abstract class ForegroundService extends Service {
     }
 
     // Fall back on the old API.
-    setForeground(true);
+    //setForeground(true);
     if (notification != null) {
       mNotificationManager.notify(mNotificationId, notification);
     }
@@ -68,7 +68,7 @@ public abstract class ForegroundService extends Service {
     // Fall back on the old API. Note to cancel BEFORE changing the
     // foreground state, since we could be killed at that point.
     mNotificationManager.cancel(mNotificationId);
-    setForeground(false);
+    //setForeground(false);
   }
 
   @Override

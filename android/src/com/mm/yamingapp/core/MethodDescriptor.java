@@ -16,6 +16,8 @@
 
 package com.mm.yamingapp.core;
 
+import android.util.Log;
+
 import com.googlecode.android_scripting.jsonrpc.RpcReceiverManager;
 import com.googlecode.android_scripting.rpc.Converter;
 import com.googlecode.android_scripting.rpc.ParameterDescriptor;
@@ -66,6 +68,7 @@ public final class MethodDescriptor {
   /** Collects all methods with {@code RPC} annotation from given class. */
   public static Collection<MethodDescriptor> collectFrom(Class<? extends WrapperBase> clazz) {
     List<MethodDescriptor> descriptors = new ArrayList<MethodDescriptor>();
+
     for (Method method : clazz.getMethods()) {
       if (method.isAnnotationPresent(Rpc.class)) {
         descriptors.add(new MethodDescriptor(clazz, method));

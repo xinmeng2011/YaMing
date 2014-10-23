@@ -10,19 +10,20 @@ import java.util.Map;
 
 import org.json.JSONArray;
 
-import com.googlecode.android_scripting.Log;
+import android.util.Log;
+
 import com.mm.yamingapp.core.MethodDescriptor;
 
 public class MethodsPool {
 	private Map<Class<? extends WrapperBase>,WrapperBase> mWrapperInstances = new HashMap<Class<? extends WrapperBase>, WrapperBase>();
-	private MethodsPool mInstance;
+	static private MethodsPool mInstance;
 	private Map<String, MethodDescriptor> mMethodsMap = new HashMap<String, MethodDescriptor>();
 	private IContext mIContext;
-	
+	private String tag = "MethodsPool_cindy";
 	private MethodsPool(){
 	}
 	
-	public MethodsPool getInstance(){
+	static public MethodsPool getInstance(){
 		if(mInstance != null){
 			return mInstance;
 		}
@@ -58,11 +59,11 @@ public class MethodsPool {
 
 	    Constructor<? extends WrapperBase> constructor;
 	    try {
-	      constructor = clazz.getConstructor(getClass());
+	      constructor = clazz.getConstructor(IContext.class);
 	      object = constructor.newInstance(mIContext);
 	      mWrapperInstances.put(clazz, object);
 	    } catch (Exception e) {
-	      Log.e(e);
+	    	Log.e(tag, e.toString());
 	    }
 
 	    return object;
@@ -74,6 +75,7 @@ public class MethodsPool {
 	  }
 
 	  public MethodDescriptor getMethodDescriptor(String methodName) {
+		Log.i(tag,mMethodsMap.toString());
 	    return mMethodsMap.get(methodName);
 	  }
 
@@ -86,6 +88,9 @@ public class MethodsPool {
 	  public Object invoke(String methodName, JSONArray args) throws Throwable{
 		  MethodDescriptor md = getMethodDescriptor(methodName);
 		  Object obj = getWrapperInstance(md.getDeclaringClass());
+		  if(obj == null){
+			  Log.i(tag, "obj == null");
+		  }
 		  return md.invoke(obj, args);
 	  }
 	
