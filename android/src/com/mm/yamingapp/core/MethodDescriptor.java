@@ -18,7 +18,6 @@ package com.mm.yamingapp.core;
 
 import android.util.Log;
 
-import com.googlecode.android_scripting.jsonrpc.RpcReceiverManager;
 import com.googlecode.android_scripting.rpc.Converter;
 import com.googlecode.android_scripting.rpc.ParameterDescriptor;
 import com.googlecode.android_scripting.rpc.Rpc;
