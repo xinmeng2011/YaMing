@@ -1,6 +1,6 @@
 
 from subprocess import Popen, PIPE, STDOUT
-import os
+import os,sys
 import time
 from multiprocessing import Process
 
@@ -13,7 +13,13 @@ def execute_timer(seconds,cmd):
     time.sleep(seconds)
     execute(cmd)
 
-def run_after_sleep(time = 5,cmd):
+def run_after_sleep(cmd , time = 5):
     print "in parent process (id %s)" % os.getpid()
     p = Process(target=execute_timer, args=(time,cmd))
     p.start()
+    
+    
+def print_flush(thing):
+    print thing
+    sys.stdout.flush()
+    

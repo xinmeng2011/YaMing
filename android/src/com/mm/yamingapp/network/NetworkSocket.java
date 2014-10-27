@@ -8,6 +8,11 @@ import java.io.OutputStream;
 import java.net.Socket;
 import java.net.UnknownHostException;
 
+import org.json.JSONArray;
+import org.json.JSONObject;
+
+import com.googlecode.android_scripting.jsonrpc.JsonRpcResult;
+
 import android.util.Log;
 
 public class NetworkSocket{
@@ -41,17 +46,16 @@ public class NetworkSocket{
 			OutputStream outputStream = mMainSocket.getOutputStream();
 			DataInputStream inputData = new DataInputStream(inputStream);
 			DataOutputStream outputData = new DataOutputStream(outputStream);
-			byte[] b = new byte[buffer_size];
+			byte[] data = new byte[buffer_size];
 			
 			while (true){
-				int length = inputData.read(b);
-				String Msg = new String(b, 0, length, "gb2312");
-				Log.i(tag, "rcved  " + Msg);
+				int length = inputData.read(data);
+				String parsedData = new String(data, 0, length, "gb2312");
+				Log.i(tag, "rcved  " + parsedData);
 				if(mINetworkHandler != null){
-					mINetworkHandler.doWith(Msg);
+					Object resultObject = mINetworkHandler.doWith(parsedData);
+					outputData.writeBytes(resultObject.toString());
 				}
-				outputData.writeUTF("ok");
-				
 			}
 		}catch(Exception ex){
 			Log.i(tag, "exception rcving");

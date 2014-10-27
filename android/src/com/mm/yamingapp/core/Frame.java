@@ -38,11 +38,11 @@ public class Frame implements IContext{
     
     
     public void run(){
-//    	mNS = new NetworkSocket(null);
-//    	mNS.connect2Server(Config.SERVER_IP, Config.SERVER_PORT);
-//    	mNS.waitForCommand();
+    	mNS = new NetworkSocket(null);
+    	mNS.connect2Server(Config.SERVER_IP, Config.SERVER_PORT);
+    	mNS.waitForCommand();
     	
-    	mRpcCore.test();
+    	//mRpcCore.test();
     }
 
 	@Override
