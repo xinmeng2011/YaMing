@@ -1,9 +1,10 @@
 from unittest import TestSuite, defaultTestLoader
 from lib.xmlrunner import XMLTestRunner
 
-TEST_SUITE =  []
+TEST_SUITES =  [[],[]]
 # classes of test case 
 
+ym_test_suites = []
 
 def init_env():
     pass
@@ -15,24 +16,22 @@ def main_entry():
     init_env()
     print "whole test suite begin"
     # can be multi-process run test_cases
-    tests = get_test_cases()
-    run_tests(tests)
-    print "test suite end"
+    testsuites = get_test_suites()
+    for suite in testsuites:
+        run_single_suite(suite)
     destory_env()
+    
+def get_test_suites():
+    for s in TEST_SUITES:
+        suite = TestSuite()
+        for case in s:
+            suite.addTests(defaultTestLoader.loadTestsFromTestCase(case))
+        ym_test_suites.append(suite)
 
-def run_tests(tests, output='reports', verbose=False):
-    suite = TestSuite()
-    for test in tests:
-        suite.addTests(defaultTestLoader.loadTestsFromTestCase(test))
+def run_single_suite(suite, output='reports', verbose=False):
     testRunner = XMLTestRunner(output=output, verbose=verbose)
     result = testRunner.run(suite)
     return result
-
-def get_test_cases():
-    suite = []
-    for case in TEST_SUITE:
-            suite.append(case)
-
 
 if __name__ == "__main__":
     main_entry()
