@@ -9,23 +9,18 @@ class YmTestCase(TestCase):
     def get_own_device(self):
         return self.own_device
     
-    def test_123(self):
-        print self.own_device
-        print "test(self)"
+#     def test_123(self):
+#         print self.own_device
+#         print "test(self)"
+#         
+#     def test_456(self):
+#         print self.own_device
+#         print "456"
     
     
-ts = TestSuite()
-
-ts.addTest(ym_test_loader.ym_loader.loadTestsFromTestCase(YmTestCase, "lll"))
- 
-runner = XMLTestRunner() 
-runner.run(ts)
-
-  
-class T:
-    def __call__(self, *args, **kwds):
-        print "__call__"
-        
-#t = T()
-
-#t()
+# ts = TestSuite()
+# 
+# ts.addTest(ym_test_loader.ym_loader.loadTestsFromTestCase(YmTestCase, "lll"))
+#  
+# runner = XMLTestRunner() 
+# runner.run(ts)

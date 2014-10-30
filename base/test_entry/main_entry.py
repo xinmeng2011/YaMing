@@ -1,10 +1,8 @@
-from unittest import TestSuite, defaultTestLoader
+from unittest import TestSuite
 from lib.xmlrunner import XMLTestRunner
-
-TEST_SUITES =  [[],[]]
-# classes of test case 
-
-ym_test_suites = []
+from lib import ym_test_loader
+from multiprocessing import Process
+import config
 
 def init_env():
     pass
@@ -13,25 +11,20 @@ def destory_env():
     pass
 
 def main_entry():
-    init_env()
-    print "whole test suite begin"
-    # can be multi-process run test_cases
-    testsuites = get_test_suites()
-    for suite in testsuites:
-        run_single_suite(suite)
-    destory_env()
-    
-def get_test_suites():
-    for s in TEST_SUITES:
-        suite = TestSuite()
-        for case in s:
-            suite.addTests(defaultTestLoader.loadTestsFromTestCase(case))
-        ym_test_suites.append(suite)
+    i = 0
+    for _ in config.ALL_TEST:
+        p = Process(target=run_single_suite, args=(i,))
+        p.start()
+        i+=1
 
-def run_single_suite(suite, output='reports', verbose=False):
-    testRunner = XMLTestRunner(output=output, verbose=verbose)
-    result = testRunner.run(suite)
-    return result
+def run_single_suite(id):
+    testclasses = config.ALL_TEST[id]
+    ts = TestSuite()
+    for tc in testclasses:
+        ts.addTest(ym_test_loader.ym_loader.loadTestsFromTestCase(tc,id))
+    runner = XMLTestRunner() 
+    runner.run(ts)
+
 
 if __name__ == "__main__":
     main_entry()

@@ -10,7 +10,10 @@ class YMTestLoader(TestLoader):
         testCaseNames = self.getTestCaseNames(testCaseClass)
         if not testCaseNames and hasattr(testCaseClass, 'runTest'):
             testCaseNames = ['runTest']
-        devices=[device*len(testCaseNames)]
+        devices=[device]
+        devices = devices* len(testCaseNames)
+        print devices
+        print testCaseNames
         loaded_suite = self.suiteClass(map(testCaseClass, testCaseNames,devices))
         return loaded_suite
     
