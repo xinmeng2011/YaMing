@@ -210,16 +210,16 @@ class _XMLTestResult(_TextTestResult):
         systemout = xml_document.createElement('system-out')
         xml_testsuite.appendChild(systemout)
         
-        stdout = test_runner.stdout.getvalue()
-        systemout_text = xml_document.createCDATASection(stdout)
-        systemout.appendChild(systemout_text)
+        #stdout = test_runner.stdout.getvalue()
+        #systemout_text = xml_document.createCDATASection(stdout)
+        #systemout.appendChild(systemout_text)
         
         systemerr = xml_document.createElement('system-err')
         xml_testsuite.appendChild(systemerr)
         
-        stderr = test_runner.stderr.getvalue()
-        systemerr_text = xml_document.createCDATASection(stderr)
-        systemerr.appendChild(systemerr_text)
+        #stderr = test_runner.stderr.getvalue()
+        #systemerr_text = xml_document.createCDATASection(stderr)
+        #systemerr.appendChild(systemerr_text)
     
     _report_output = staticmethod(_report_output)
     
@@ -288,8 +288,6 @@ class XMLTestRunner(TextTestRunner):
         "Run the given test case or test suite."
         
         try:
-            # Prepare the test execution
-            self._patch_standard_output()
             result = self._make_result()
             
             # Print a nice header
@@ -331,6 +329,5 @@ class XMLTestRunner(TextTestRunner):
             result.generate_reports(self)
         finally:
             pass
-            self._restore_standard_output()
         
         return result

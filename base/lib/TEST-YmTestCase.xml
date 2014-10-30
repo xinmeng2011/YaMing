@@ -1,9 +1,6 @@
 <?xml version="1.0" ?>
-<testsuite errors="0" failures="0" name="YmTestCase" tests="1" time="0.001">
-	<testcase classname="YmTestCase" name="test_123" time="0.001"/>
-	<system-out>
-<![CDATA[test(self)
-]]>	</system-out>
-	<system-err>
-<![CDATA[]]>	</system-err>
+<testsuite errors="0" failures="0" name="YmTestCase" tests="1" time="0.000">
+	<testcase classname="YmTestCase" name="test_123" time="0.000"/>
+	<system-out/>
+	<system-err/>
 </testsuite>
